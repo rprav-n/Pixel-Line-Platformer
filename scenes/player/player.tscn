@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://3x6bp02ldpoj"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_62qfj"]
+[ext_resource type="Texture2D" uid="uid://b38gcch51kkro" path="res://assets/player/tile_0040.png" id="1_w2tsq"]
+[ext_resource type="Texture2D" uid="uid://bkcwjm2bntuxr" path="res://assets/player/tile_0041.png" id="2_b7tu1"]
+[ext_resource type="Texture2D" uid="uid://cqt23tgxp7s7j" path="res://assets/player/tile_0042.png" id="2_rev33"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bcrla"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w2tsq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w2tsq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_b7tu1")
+}],
+"loop": true,
+"name": &"run",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w2tsq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rev33")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yitpn"]
+size = Vector2(6, 10)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_62qfj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bcrla")
+animation = &"idle"
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_yitpn")
